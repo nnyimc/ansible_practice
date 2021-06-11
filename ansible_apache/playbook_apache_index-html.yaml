@@ -1,0 +1,20 @@
+---
+- name: Apache server installed
+  hosts: centos7
+  become: yes
+  tasks:
+    - name: latest Apache installed
+      yum:
+        name: httpd
+        state: latest
+    
+    - name: Apache enabled and running
+      service:
+        name: httpd
+        enabled: true
+        state: started
+   
+    - name: copy index.html
+      copy:
+        src: ~/ansible_practice/ansible_apache/index.html
+        dest: /var/www/html/index.html 

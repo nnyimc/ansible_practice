@@ -1,0 +1,12 @@
+---
+- hosts: centos7
+  vars:
+    check_services:
+      - httpd
+      - sshd
+  tasks:
+    - name: Check if service is started
+      service: 
+        name: "{{ item }}"
+        state: started
+      loop: "{{ check_services }}"
